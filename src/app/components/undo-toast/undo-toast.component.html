@@ -1,0 +1,28 @@
+@if (toast()) {
+  <div class="toast">
+    <span class="message">Deleted "{{ toast()!.item.name }}"</span>
+    <button type="button" class="undo-btn" (click)="undo()">Undo</button>
+    <div class="timer">
+      <svg width="20" height="20" viewBox="0 0 20 20">
+        <circle class="track" cx="10" cy="10" r="8" fill="none" stroke-width="2" />
+        <circle
+          class="progress"
+          cx="10"
+          cy="10"
+          r="8"
+          fill="none"
+          stroke-width="2"
+          stroke-dasharray="50.26"
+          [style.stroke-dashoffset]="50.26 * (1 - progress() / 100)"
+        />
+      </svg>
+    </div>
+  </div>
+}
+
+@if (errorToast()) {
+  <div class="toast error">
+    <span class="message">{{ errorToast()!.message }}</span>
+    <button type="button" class="dismiss-btn" (click)="dismissError()" aria-label="Dismiss">×</button>
+  </div>
+}

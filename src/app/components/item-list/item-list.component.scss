@@ -1,0 +1,15 @@
+.item-list {
+  flex: 1;
+  overflow-y: auto;
+  padding-bottom: 80px;
+
+  @media (min-width: 768px) {
+    padding-bottom: 0;
+  }
+}
+
+.unbought-section,
+.bought-section {
+  display: flex;
+  flex-direction: column;
+}

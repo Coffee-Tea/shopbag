@@ -1,1 +1,78 @@
-/* You can add global styles to this file, and also import other style files */
+@use 'theme';
+@use 'cdk-overlay';
+
+// =============================================================================
+// Reset
+// =============================================================================
+
+*,
+*::before,
+*::after {
+  box-sizing: border-box;
+}
+
+html,
+body {
+  margin: 0;
+  padding: 0;
+  height: 100%;
+}
+
+html {
+  font-family: var(--font-sans);
+  font-size: var(--text-body);
+  color: var(--color-ink);
+  background: var(--color-canvas);
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+  text-rendering: optimizeLegibility;
+}
+
+button {
+  font-family: inherit;
+  font-size: inherit;
+  color: inherit;
+  background: transparent;
+  border: none;
+  padding: 0;
+  cursor: pointer;
+  -webkit-tap-highlight-color: transparent;
+}
+
+input {
+  font-family: inherit;
+  font-size: inherit;
+  color: inherit;
+  background: transparent;
+  border: none;
+  outline: none;
+
+  &::placeholder {
+    color: var(--color-subtle);
+  }
+}
+
+// =============================================================================
+// Utility mixins
+// =============================================================================
+
+@mixin tap-feedback {
+  transition: background-color var(--duration-fast) var(--ease-standard);
+
+  &:active {
+    background: var(--color-surface);
+  }
+}
+
+@mixin focus-ring {
+  &:focus-visible {
+    outline: none;
+    box-shadow: inset 0 0 0 1.5px var(--color-ink);
+  }
+}
+
+@mixin strike-through {
+  text-decoration: line-through;
+  text-decoration-thickness: 1px;
+  color: var(--color-strike);
+}

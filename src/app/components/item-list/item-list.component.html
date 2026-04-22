@@ -1,0 +1,27 @@
+<div class="item-list">
+  <div class="unbought-section">
+    @for (item of unboughtItems(); track item.id) {
+      <sb-item-row
+        [item]="item"
+        (toggleBought)="toggleItem($event)"
+        (remove)="deleteItem($event)"
+        (update)="updateItem($event)"
+      />
+    }
+  </div>
+
+  @if (boughtCount() > 0) {
+    <sb-bought-section-header [count]="boughtCount()" (uncheckAll)="uncheckAll()" (clearBought)="clearBought()" />
+
+    <div class="bought-section">
+      @for (item of boughtItems(); track item.id) {
+        <sb-item-row
+          [item]="item"
+          (toggleBought)="toggleItem($event)"
+          (remove)="deleteItem($event)"
+          (update)="updateItem($event)"
+        />
+      }
+    </div>
+  }
+</div>

@@ -1,0 +1,73 @@
+<div class="item-row" [class.bought]="item().bought" [class.editing]="editing()">
+  <button
+    type="button"
+    class="checkbox"
+    [class.checked]="item().bought"
+    (click)="toggleItem()"
+    [attr.aria-checked]="item().bought"
+    role="checkbox"
+  >
+    @if (item().bought) {
+      <sb-icon name="check" [size]="14" [strokeWidth]="3" />
+    }
+  </button>
+
+  @if (editing()) {
+    <div class="edit-container" [class.expanded]="showAmountInput()">
+      <input
+        #nameInput
+        type="text"
+        class="edit-input name-input"
+        placeholder="Item name"
+        [(ngModel)]="nameValue"
+        (keydown)="onKeydown($event)"
+      />
+      @if (showAmountInput()) {
+        <input
+          #amountInput
+          type="text"
+          class="edit-input amount-input"
+          placeholder="Qty (e.g. 1L, 2 pcs)"
+          [(ngModel)]="amountValue"
+          (keydown)="onKeydown($event)"
+        />
+      } @else {
+        <button type="button" class="amount-chip" (click)="openAmountEdit($event)">
+          <sb-icon name="plus" [size]="12" />
+          amount
+        </button>
+      }
+    </div>
+
+    <button type="button" class="delete-btn editing-delete" (click)="deleteItem()" aria-label="Delete">
+      <sb-icon name="trash" [size]="18" [strokeWidth]="1.5" />
+    </button>
+  } @else {
+    <div class="content">
+      <span
+        class="name"
+        tabindex="0"
+        role="button"
+        (click)="startEdit('name')"
+        (keydown)="onFieldKeydown($event, 'name')"
+      >
+        {{ item().name }}
+      </span>
+      @if (item().amount) {
+        <span
+          class="amount"
+          tabindex="0"
+          role="button"
+          (click)="startEdit('amount')"
+          (keydown)="onFieldKeydown($event, 'amount')"
+        >
+          {{ item().amount }}
+        </span>
+      }
+    </div>
+
+    <button type="button" class="delete-btn hover-delete" (click)="deleteItem()" aria-label="Delete">
+      <sb-icon name="trash" [size]="18" [strokeWidth]="1.5" />
+    </button>
+  }
+</div>

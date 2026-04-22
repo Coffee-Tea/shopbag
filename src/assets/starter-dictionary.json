@@ -1,0 +1,315 @@
+{
+  "version": 1,
+  "locale": "en",
+  "items": [
+    {
+      "name": "Milk"
+    },
+    {
+      "name": "Bread"
+    },
+    {
+      "name": "Eggs"
+    },
+    {
+      "name": "Butter"
+    },
+    {
+      "name": "Cheese"
+    },
+    {
+      "name": "Yogurt"
+    },
+    {
+      "name": "Sour cream"
+    },
+    {
+      "name": "Cream"
+    },
+    {
+      "name": "Cottage cheese"
+    },
+    {
+      "name": "Kefir"
+    },
+    {
+      "name": "Chicken"
+    },
+    {
+      "name": "Beef"
+    },
+    {
+      "name": "Pork"
+    },
+    {
+      "name": "Bacon"
+    },
+    {
+      "name": "Sausage"
+    },
+    {
+      "name": "Ham"
+    },
+    {
+      "name": "Ground beef"
+    },
+    {
+      "name": "Fish"
+    },
+    {
+      "name": "Salmon"
+    },
+    {
+      "name": "Apples"
+    },
+    {
+      "name": "Bananas"
+    },
+    {
+      "name": "Oranges"
+    },
+    {
+      "name": "Lemons"
+    },
+    {
+      "name": "Grapes"
+    },
+    {
+      "name": "Strawberries"
+    },
+    {
+      "name": "Blueberries"
+    },
+    {
+      "name": "Pears"
+    },
+    {
+      "name": "Avocado"
+    },
+    {
+      "name": "Watermelon"
+    },
+    {
+      "name": "Potatoes"
+    },
+    {
+      "name": "Onions"
+    },
+    {
+      "name": "Garlic"
+    },
+    {
+      "name": "Tomatoes"
+    },
+    {
+      "name": "Cucumbers"
+    },
+    {
+      "name": "Bell pepper"
+    },
+    {
+      "name": "Carrots"
+    },
+    {
+      "name": "Cabbage"
+    },
+    {
+      "name": "Lettuce"
+    },
+    {
+      "name": "Spinach"
+    },
+    {
+      "name": "Broccoli"
+    },
+    {
+      "name": "Zucchini"
+    },
+    {
+      "name": "Mushrooms"
+    },
+    {
+      "name": "Corn"
+    },
+    {
+      "name": "Celery"
+    },
+    {
+      "name": "Parsley"
+    },
+    {
+      "name": "Dill"
+    },
+    {
+      "name": "Basil"
+    },
+    {
+      "name": "Ginger"
+    },
+    {
+      "name": "Rice"
+    },
+    {
+      "name": "Pasta"
+    },
+    {
+      "name": "Flour"
+    },
+    {
+      "name": "Sugar"
+    },
+    {
+      "name": "Salt"
+    },
+    {
+      "name": "Black pepper"
+    },
+    {
+      "name": "Olive oil"
+    },
+    {
+      "name": "Sunflower oil"
+    },
+    {
+      "name": "Vinegar"
+    },
+    {
+      "name": "Soy sauce"
+    },
+    {
+      "name": "Honey"
+    },
+    {
+      "name": "Jam"
+    },
+    {
+      "name": "Peanut butter"
+    },
+    {
+      "name": "Oats"
+    },
+    {
+      "name": "Cereal"
+    },
+    {
+      "name": "Canned tomatoes"
+    },
+    {
+      "name": "Canned beans"
+    },
+    {
+      "name": "Tuna"
+    },
+    {
+      "name": "Olives"
+    },
+    {
+      "name": "Mustard"
+    },
+    {
+      "name": "Ketchup"
+    },
+    {
+      "name": "Mayonnaise"
+    },
+    {
+      "name": "Coffee"
+    },
+    {
+      "name": "Tea"
+    },
+    {
+      "name": "Water"
+    },
+    {
+      "name": "Juice"
+    },
+    {
+      "name": "Sparkling water"
+    },
+    {
+      "name": "Wine"
+    },
+    {
+      "name": "Beer"
+    },
+    {
+      "name": "Lemonade"
+    },
+    {
+      "name": "Chocolate"
+    },
+    {
+      "name": "Cookies"
+    },
+    {
+      "name": "Crackers"
+    },
+    {
+      "name": "Chips"
+    },
+    {
+      "name": "Nuts"
+    },
+    {
+      "name": "Almonds"
+    },
+    {
+      "name": "Walnuts"
+    },
+    {
+      "name": "Raisins"
+    },
+    {
+      "name": "Ice cream"
+    },
+    {
+      "name": "Frozen vegetables"
+    },
+    {
+      "name": "Frozen berries"
+    },
+    {
+      "name": "Frozen pizza"
+    },
+    {
+      "name": "Dumplings"
+    },
+    {
+      "name": "Toilet paper"
+    },
+    {
+      "name": "Paper towels"
+    },
+    {
+      "name": "Napkins"
+    },
+    {
+      "name": "Dish soap"
+    },
+    {
+      "name": "Laundry detergent"
+    },
+    {
+      "name": "Toothpaste"
+    },
+    {
+      "name": "Shampoo"
+    },
+    {
+      "name": "Soap"
+    },
+    {
+      "name": "Trash bags"
+    },
+    {
+      "name": "Sponges"
+    },
+    {
+      "name": "Deodorant"
+    },
+    {
+      "name": "Batteries"
+    }
+  ]
+}

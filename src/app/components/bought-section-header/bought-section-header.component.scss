@@ -1,0 +1,55 @@
+.bought-header {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: var(--space-7) var(--space-12) var(--space-7) var(--space-10);
+  border-top: var(--border-divider);
+
+  @media (min-width: 768px) {
+    padding: var(--space-6) var(--space-14);
+  }
+}
+
+.label {
+  font-size: 12px;
+  font-weight: var(--weight-semibold);
+  letter-spacing: var(--tracking-wide);
+  text-transform: uppercase;
+  color: var(--color-subtle);
+
+  @media (min-width: 768px) {
+    font-size: var(--text-tag);
+  }
+}
+
+.actions {
+  display: flex;
+  gap: var(--space-6);
+}
+
+.action-btn {
+  font-size: 13px;
+  font-weight: var(--weight-regular);
+  color: var(--color-muted);
+  background: transparent;
+  border: none;
+  cursor: pointer;
+  padding: var(--space-2) var(--space-3);
+  margin: calc(-1 * var(--space-2)) calc(-1 * var(--space-3));
+  border-radius: var(--radius-xs);
+  transition: all var(--duration-fast) var(--ease-standard);
+
+  &:hover {
+    color: var(--color-ink);
+    background: var(--color-surface);
+  }
+
+  &:focus-visible {
+    outline: none;
+    box-shadow: inset 0 0 0 1.5px var(--color-ink);
+  }
+
+  @media (min-width: 768px) {
+    font-size: var(--text-caption);
+  }
+}

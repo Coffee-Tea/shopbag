@@ -1,0 +1,7 @@
+<div class="bought-header">
+  <span class="label">BOUGHT · {{ count() }}</span>
+  <div class="actions">
+    <button type="button" class="action-btn" (click)="uncheckAll.emit()">Uncheck all</button>
+    <button type="button" class="action-btn" (click)="clearBought.emit()">Clear bought</button>
+  </div>
+</div>

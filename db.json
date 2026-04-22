@@ -1,0 +1,113 @@
+{
+  "items": [
+    {
+      "listId": "primary",
+      "name": "Mayonnaise",
+      "amount": "",
+      "bought": false,
+      "createdAt": "2026-04-20T12:42:59.023Z",
+      "order": 1,
+      "id": "vakSwxOAD-A"
+    },
+    {
+      "listId": "primary",
+      "name": "Ketchup",
+      "amount": "",
+      "bought": true,
+      "createdAt": "2026-04-20T12:43:04.080Z",
+      "order": 2,
+      "id": "EgF-YZo73vo"
+    },
+    {
+      "listId": "primary",
+      "name": "Kefir",
+      "amount": "450g",
+      "bought": false,
+      "createdAt": "2026-04-20T12:43:15.560Z",
+      "order": 3,
+      "id": "Tg2Z9emJhpc"
+    },
+    {
+      "listId": "primary",
+      "name": "Vinegar",
+      "amount": "",
+      "bought": true,
+      "createdAt": "2026-04-20T12:43:24.575Z",
+      "order": 4,
+      "id": "TTO5HwD3DTk"
+    },
+    {
+      "listId": "primary",
+      "name": "Vinegar",
+      "amount": "",
+      "bought": false,
+      "createdAt": "2026-04-20T12:43:29.730Z",
+      "order": 5,
+      "id": "7KIv3Lz_SpY"
+    },
+    {
+      "listId": "primary",
+      "name": "Vine",
+      "amount": "",
+      "bought": true,
+      "createdAt": "2026-04-20T12:43:34.913Z",
+      "order": 6,
+      "id": "yiZmAlpcwcA"
+    },
+    {
+      "listId": "primary",
+      "name": "Bread",
+      "amount": "",
+      "bought": true,
+      "createdAt": "2026-04-20T12:43:43.558Z",
+      "order": 7,
+      "id": "V1RghVijUPI"
+    },
+    {
+      "listId": "primary",
+      "name": "Butter",
+      "amount": "",
+      "bought": true,
+      "createdAt": "2026-04-20T12:43:48.751Z",
+      "order": 8,
+      "id": "NRFQGO2CNs8"
+    },
+    {
+      "listId": "primary",
+      "name": "Almonds",
+      "amount": "450g",
+      "bought": false,
+      "createdAt": "2026-04-20T12:45:00.533Z",
+      "order": 11,
+      "id": "9RV6vrJLSDo"
+    },
+    {
+      "listId": "primary",
+      "name": "Butt",
+      "amount": "",
+      "bought": true,
+      "createdAt": "2026-04-20T12:43:52.238Z",
+      "order": 9,
+      "id": "U_hEQzLAO38"
+    },
+    {
+      "listId": "primary",
+      "name": "Bacon",
+      "amount": "",
+      "bought": true,
+      "createdAt": "2026-04-20T12:43:59.165Z",
+      "order": 10,
+      "id": "iGE-bq7Dm0M"
+    },
+    {
+      "listId": "primary",
+      "name": "Corn",
+      "amount": "",
+      "bought": false,
+      "createdAt": "2026-04-22T05:45:04.675Z",
+      "order": 12,
+      "id": "_jyCb9sbvTA"
+    }
+  ],
+  "$schema": "./node_modules/json-server/schema.json"
+}

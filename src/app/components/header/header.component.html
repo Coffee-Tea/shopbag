@@ -1,0 +1,50 @@
+<header class="header">
+  <div class="title-block">
+    <h1 class="title">Shopbag</h1>
+    <p class="subtitle">
+      @if (totalCount() === 0) {
+        No items
+      } @else {
+        {{ totalCount() }} {{ totalCount() === 1 ? 'item' : 'items' }}
+        @if (boughtCount() > 0) {
+          · {{ boughtCount() }} bought
+        }
+      }
+    </p>
+  </div>
+
+  <div class="menu-container">
+    <button type="button" class="menu-btn" (click)="toggleMenu()" aria-label="Open menu">
+      <sb-icon name="dots-vertical" [size]="20" />
+    </button>
+
+    @if (menuOpen()) {
+      <div class="menu-backdrop" (click)="closeMenu()" aria-hidden="true"></div>
+      <div class="menu-popover">
+        <button
+          type="button"
+          class="menu-item"
+          [disabled]="totalCount() === boughtCount()"
+          (click)="closeAndMarkAllBought()"
+        >
+          <sb-icon name="check" />
+          Mark all as bought
+        </button>
+        <button type="button" class="menu-item" (click)="onToggleTheme()">
+          @if (isDark()) {
+            <sb-icon name="sun" />
+            Light theme
+          } @else {
+            <sb-icon name="moon" />
+            Dark theme
+          }
+        </button>
+        <div class="menu-divider"></div>
+        <button type="button" class="menu-item danger" [disabled]="totalCount() === 0" (click)="closeAndClearAll()">
+          <sb-icon name="trash" />
+          Clear all
+        </button>
+      </div>
+    }
+  </div>
+</header>

@@ -1,0 +1,45 @@
+<div class="add-input">
+  @if (suggestions().length > 0) {
+    <div class="suggestions">
+      @for (suggestion of suggestions(); track suggestion.name) {
+        <button type="button" class="suggestion-chip" (click)="acceptSuggestion(suggestion)">
+          {{ suggestion.displayName }}
+        </button>
+      }
+    </div>
+  }
+
+  <div class="input-row">
+    <div class="input-container" [class.expanded]="showAmount()">
+      <div class="name-row">
+        @if (ghostText()) {
+          <span class="ghost-overlay" aria-hidden="true">
+            <span class="ghost-typed">{{ name() }}</span
+            >{{ ghostText() }}
+          </span>
+        }
+        <input type="text" class="name-field" placeholder="Add item" [(ngModel)]="name" (keydown)="onKeydown($event)" />
+      </div>
+
+      @if (showAmount()) {
+        <input
+          type="text"
+          class="amount-field"
+          placeholder="Qty (e.g. 1L, 2 pcs)"
+          [(ngModel)]="amount"
+          (keydown)="onKeydown($event)"
+        />
+      } @else {
+        <button type="button" class="amount-chip" (click)="toggleAmountField()">
+          <sb-icon name="plus" [size]="12" />
+          amount
+        </button>
+      }
+    </div>
+
+    <button type="button" class="add-btn" (click)="addItem()" [disabled]="!name().trim()">
+      <sb-icon class="mobile-icon" name="check" [size]="20" [strokeWidth]="2.5" />
+      <span class="desktop-text">Add</span>
+    </button>
+  </div>
+</div>

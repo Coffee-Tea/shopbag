@@ -1,0 +1,107 @@
+.toast {
+  position: fixed;
+  bottom: calc(var(--tap-min) + var(--space-10) + var(--space-5));
+  left: var(--space-5);
+  right: var(--space-5);
+  max-width: calc(var(--content-max-width) - var(--space-10));
+  margin: 0 auto;
+  display: flex;
+  align-items: center;
+  gap: var(--space-6);
+  padding: var(--space-5) var(--space-7);
+  background: var(--color-toast-bg);
+  border-radius: var(--radius-lg);
+  z-index: 100;
+  animation: slideUp var(--duration-quick) var(--ease-standard);
+
+  @media (min-width: 768px) {
+    bottom: calc(var(--tap-min) + var(--space-12) + var(--space-5));
+  }
+}
+
+@keyframes slideUp {
+  from {
+    transform: translateY(100%);
+    opacity: 0;
+  }
+  to {
+    transform: translateY(0);
+    opacity: 1;
+  }
+}
+
+.message {
+  flex: 1;
+  font-size: var(--text-caption);
+  font-weight: var(--weight-regular);
+  color: var(--color-toast-text);
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+
+.undo-btn {
+  flex-shrink: 0;
+  font-size: var(--text-caption);
+  font-weight: var(--weight-semibold);
+  color: var(--color-toast-text);
+  background: transparent;
+  border: none;
+  cursor: pointer;
+  padding: var(--space-2) var(--space-3);
+  margin: calc(-1 * var(--space-2)) calc(-1 * var(--space-3));
+  border-radius: var(--radius-xs);
+  transition: opacity var(--duration-fast) var(--ease-standard);
+
+  &:hover {
+    opacity: 0.8;
+  }
+
+  &:focus-visible {
+    outline: none;
+    box-shadow: 0 0 0 2px var(--color-toast-text);
+  }
+}
+
+.timer {
+  flex-shrink: 0;
+  width: 20px;
+  height: 20px;
+
+  svg {
+    transform: rotate(-90deg);
+  }
+
+  .track {
+    stroke: rgb(255 255 255 / 20%);
+  }
+
+  .progress {
+    stroke: var(--color-toast-text);
+    transition: stroke-dashoffset 50ms linear;
+  }
+}
+
+.toast.error {
+  background: var(--color-danger);
+}
+
+.dismiss-btn {
+  flex-shrink: 0;
+  font-size: 20px;
+  font-weight: var(--weight-regular);
+  line-height: 1;
+  color: var(--color-toast-text);
+  background: transparent;
+  border: none;
+  cursor: pointer;
+  padding: var(--space-2);
+  margin: calc(-1 * var(--space-2));
+  border-radius: var(--radius-xs);
+  opacity: 0.8;
+  transition: opacity var(--duration-fast) var(--ease-standard);
+
+  &:hover {
+    opacity: 1;
+  }
+}

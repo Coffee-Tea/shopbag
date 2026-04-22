@@ -1,0 +1,38 @@
+.cdk-overlay-container {
+  position: fixed;
+  z-index: 1000;
+  inset: 0;
+  pointer-events: none;
+}
+
+.cdk-global-overlay-wrapper {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  position: absolute;
+  inset: 0;
+  pointer-events: auto;
+}
+
+.cdk-overlay-backdrop {
+  position: absolute;
+  inset: 0;
+}
+
+.confirm-dialog-backdrop {
+  background: var(--color-backdrop);
+  animation: backdropFadeIn var(--duration-quick) var(--ease-standard);
+}
+
+@keyframes backdropFadeIn {
+  from {
+    opacity: 0;
+  }
+  to {
+    opacity: 1;
+  }
+}
+
+.confirm-dialog-panel {
+  position: relative;
+}

@@ -1,0 +1,18 @@
+<div class="dialog" role="alertdialog" aria-modal="true" aria-labelledby="dialog-title">
+  <h2 id="dialog-title" class="title">{{ data.title }}</h2>
+  @if (data.subtitle) {
+    <p class="subtitle">{{ data.subtitle }}</p>
+  }
+  <div class="actions">
+    <button type="button" class="btn cancel" (click)="cancel()">Cancel</button>
+    <button
+      type="button"
+      class="btn confirm"
+      [class.destructive]="data.destructive"
+      (click)="confirm()"
+      cdkFocusInitial
+    >
+      {{ data.confirmLabel }}
+    </button>
+  </div>
+</div>

@@ -1,0 +1,31 @@
+<div class="app-container">
+  <!-- TODO: move out to a separate component in the next phase -->
+  <sb-header
+    [totalCount]="totalCount()"
+    [boughtCount]="boughtCount()"
+    (markAllBought)="markAllBought()"
+    (clearAll)="clearAll()"
+  />
+
+  @if (showLoading()) {
+    <section class="status-state" role="status" aria-live="polite">
+      <div class="loading-spinner" aria-hidden="true"></div>
+      <h2 class="status-title">Loading your list</h2>
+      <p class="status-subtitle">One moment while we fetch your items.</p>
+    </section>
+  } @else if (showLoadError()) {
+    <section class="status-state">
+      <h2 class="status-title">Couldn't load your list</h2>
+      <p class="status-subtitle">Check your connection and try again.</p>
+      <button type="button" class="retry-btn" (click)="load()">Try again</button>
+    </section>
+  } @else if (showEmptyState()) {
+    <sb-empty-state />
+  } @else {
+    <sb-item-list />
+  }
+
+  <sb-add-input (add)="addItem($event)" />
+
+  <sb-undo-toast />
+</div>

@@ -16,6 +16,19 @@ module.exports = defineConfig([
     ],
     processor: angular.processInlineTemplates,
     rules: {
+      '@typescript-eslint/naming-convention': [
+        'error',
+        {
+          selector: 'interface',
+          format: ['PascalCase'],
+          custom: { regex: '^I[A-Z]', match: true },
+        },
+      ],
+      'padding-line-between-statements': [
+        'error',
+        { blankLine: 'always', prev: '*', next: 'if' },
+        { blankLine: 'always', prev: 'if', next: '*' },
+      ],
       '@angular-eslint/directive-selector': [
         'error',
         {
