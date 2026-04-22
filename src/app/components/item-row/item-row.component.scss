@@ -98,10 +98,6 @@
     font-size: var(--text-caption);
   }
 
-  &.placeholder {
-    color: var(--color-hint);
-  }
-
   .bought & {
     text-decoration: line-through;
     text-decoration-thickness: 1px;

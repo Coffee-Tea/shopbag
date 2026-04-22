@@ -14,7 +14,7 @@
       <p class="status-subtitle">One moment while we fetch your items.</p>
     </section>
   } @else if (showLoadError()) {
-    <section class="status-state">
+    <section class="status-state" role="status" aria-live="assertive">
       <h2 class="status-title">Couldn't load your list</h2>
       <p class="status-subtitle">Check your connection and try again.</p>
       <button type="button" class="retry-btn" (click)="load()">Try again</button>

@@ -63,8 +63,10 @@ export class AddInputComponent {
 
     if (!first || !query) return '';
 
-    if (first.name.startsWith(query.toLowerCase())) {
-      return first.displayName.slice(query.length);
+    const queryLower = query.toLowerCase();
+
+    if (first.name.startsWith(queryLower)) {
+      return first.name.slice(queryLower.length);
     }
 
     return '';
@@ -85,7 +87,6 @@ export class AddInputComponent {
 
     const amountValue = this.amount().trim();
     this.add.emit({ name: nameValue, amount: amountValue });
-    this.historyService.record(nameValue, amountValue);
     this.name.set('');
     this.amount.set('');
     this.showAmount.set(false);

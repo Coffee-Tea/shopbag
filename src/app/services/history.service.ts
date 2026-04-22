@@ -30,7 +30,7 @@ export class HistoryService {
     try {
       localStorage.setItem(STORAGE_KEY, JSON.stringify(this.entriesSignal()));
     } catch {
-      // ignore storage errors for now
+      console.error('[HistoryService] Failed to save history');
     }
   }
 

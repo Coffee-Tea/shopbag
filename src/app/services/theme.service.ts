@@ -16,7 +16,10 @@ export class ThemeService {
     effect(() => {
       const theme = this.themeSignal();
       document.documentElement.classList.toggle('dark', theme === 'dark');
-      localStorage.setItem(THEME_KEY, theme);
+
+      if (localStorage.getItem(THEME_KEY) !== theme) {
+        localStorage.setItem(THEME_KEY, theme);
+      }
     });
   }
 

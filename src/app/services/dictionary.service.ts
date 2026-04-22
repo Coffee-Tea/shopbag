@@ -24,8 +24,8 @@ export class DictionaryService {
   private load(): void {
     this.http.get<IDictionaryData>('/assets/starter-dictionary.json').subscribe({
       next: (data) => this.itemsSignal.set(data.items),
-      error: () => {
-        // TODO: handle later, dictionary is optional
+      error: (err) => {
+        console.error('[DictionaryService] Failed to load starter dictionary:', err);
       },
     });
   }

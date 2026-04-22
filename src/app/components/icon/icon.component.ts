@@ -1,5 +1,4 @@
 import { ChangeDetectionStrategy, Component, input } from '@angular/core';
-import { InputSignal } from '@angular/core';
 
 type IconName = 'check' | 'dots-vertical' | 'moon' | 'plus' | 'shopping-bag' | 'sun' | 'trash';
 
@@ -10,7 +9,7 @@ type IconName = 'check' | 'dots-vertical' | 'moon' | 'plus' | 'shopping-bag' | '
   changeDetection: ChangeDetectionStrategy.OnPush,
 })
 export class IconComponent {
-  readonly name: InputSignal<IconName> = input.required<IconName>();
-  readonly size: InputSignal<number> = input<number>(16);
-  readonly strokeWidth: InputSignal<number> = input<number>(2);
+  readonly name = input.required<IconName>();
+  readonly size = input<number>(16);
+  readonly strokeWidth = input<number>(2);
 }
