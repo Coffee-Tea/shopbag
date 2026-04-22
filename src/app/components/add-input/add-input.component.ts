@@ -1,4 +1,4 @@
-import { ChangeDetectionStrategy, Component, computed, inject, output, signal } from '@angular/core';
+import { afterNextRender, ChangeDetectionStrategy, Component, computed, ElementRef, inject, Injector, output, signal, viewChild } from '@angular/core';
 import { FormsModule } from '@angular/forms';
 import { HistoryService } from '../../services/history.service';
 import { DictionaryService } from '../../services/dictionary.service';
@@ -20,6 +20,9 @@ interface ISuggestion {
 export class AddInputComponent {
   private readonly historyService = inject(HistoryService);
   private readonly dictionaryService = inject(DictionaryService);
+  private readonly injector = inject(Injector);
+
+  private readonly amountField = viewChild<ElementRef<HTMLInputElement>>('amountField');
 
   readonly add = output<{ name: string; amount: string }>();
 
@@ -74,6 +77,11 @@ export class AddInputComponent {
 
   toggleAmountField(): void {
     this.showAmount.set(true);
+
+    afterNextRender(
+      () => this.amountField()?.nativeElement.focus(),
+      { injector: this.injector },
+    );
   }
 
   acceptSuggestion(suggestion: ISuggestion): void {

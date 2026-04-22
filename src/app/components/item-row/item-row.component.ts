@@ -2,8 +2,8 @@ import {
   afterNextRender,
   ChangeDetectionStrategy,
   Component,
-  DestroyRef,
   ElementRef,
+  HostListener,
   inject,
   Injector,
   input,
@@ -24,7 +24,6 @@ import { IconComponent } from '../icon/icon.component';
 })
 export class ItemRowComponent {
   private readonly elementRef = inject(ElementRef);
-  private readonly destroyRef = inject(DestroyRef);
   private readonly injector = inject(Injector);
 
   readonly item = input.required<IItem>();
@@ -41,23 +40,18 @@ export class ItemRowComponent {
   private readonly nameInput = viewChild<ElementRef<HTMLInputElement>>('nameInput');
   private readonly amountInput = viewChild<ElementRef<HTMLInputElement>>('amountInput');
 
-  private documentClickHandler = (event: MouseEvent) => {
-    if (!this.editing()) return;
+  private isFocusTransitioning = false;
 
-    const clickedInside = this.elementRef.nativeElement.contains(event.target as Node);
-
-    if (!clickedInside) {
-      this.saveEdit();
-    }
-  };
-
-  constructor() {
-    this.destroyRef.onDestroy(() => {
-      this.detachDocumentClickHandler();
-    });
+  @HostListener('focusout')
+  onFocusOut(): void {
+    this.saveEditIfFocusLeftComponent();
   }
 
   toggleItem(): void {
+    if (this.editing()) {
+      this.saveEdit();
+    }
+
     this.toggleBought.emit(this.item().id);
   }
 
@@ -66,12 +60,11 @@ export class ItemRowComponent {
   }
 
   startEdit(field: 'name' | 'amount'): void {
+    this.isFocusTransitioning = true;
     this.editing.set(true);
     this.nameValue.set(this.item().name);
     this.amountValue.set(this.item().amount);
     this.showAmountInput.set(!!this.item().amount);
-
-    document.addEventListener('click', this.documentClickHandler, true);
 
     afterNextRender(
       () => {
@@ -82,6 +75,8 @@ export class ItemRowComponent {
           el.focus();
           el.setSelectionRange(el.value.length, el.value.length);
         }
+
+        this.isFocusTransitioning = false;
       },
       { injector: this.injector },
     );
@@ -89,6 +84,7 @@ export class ItemRowComponent {
 
   openAmountEdit(event: Event): void {
     event.stopPropagation();
+    this.isFocusTransitioning = true;
     this.showAmountInput.set(true);
 
     afterNextRender(
@@ -98,6 +94,8 @@ export class ItemRowComponent {
         if (input) {
           input.nativeElement.focus();
         }
+
+        this.isFocusTransitioning = false;
       },
       { injector: this.injector },
     );
@@ -115,8 +113,6 @@ export class ItemRowComponent {
 
   saveEdit(): void {
     if (!this.editing()) return;
-
-    this.detachDocumentClickHandler();
 
     const name = this.nameValue().trim();
     const amount = this.amountValue().trim();
@@ -144,7 +140,6 @@ export class ItemRowComponent {
   }
 
   cancelEdit(): void {
-    this.detachDocumentClickHandler();
     this.editing.set(false);
   }
 
@@ -155,7 +150,13 @@ export class ItemRowComponent {
     }
   }
 
-  private detachDocumentClickHandler(): void {
-    document.removeEventListener('click', this.documentClickHandler, true);
+  private saveEditIfFocusLeftComponent(): void {
+    setTimeout(() => {
+      if (!this.editing() || this.isFocusTransitioning) return;
+
+      if (!this.elementRef.nativeElement.contains(document.activeElement)) {
+        this.saveEdit();
+      }
+    });
   }
 }

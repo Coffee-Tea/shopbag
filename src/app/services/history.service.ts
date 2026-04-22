@@ -38,11 +38,13 @@ export class HistoryService {
     const normalized = name.toLowerCase().trim();
     const entries = [...this.entriesSignal()];
     const existingIndex = entries.findIndex((e) => e.name === normalized);
+    const displayName = name.trim();
     const lastUsedAt = new Date().toISOString();
 
     if (existingIndex >= 0) {
       entries[existingIndex] = {
         ...entries[existingIndex],
+        displayName,
         count: entries[existingIndex].count + 1,
         lastAmount: amount || entries[existingIndex].lastAmount,
         lastUsedAt,
@@ -50,7 +52,7 @@ export class HistoryService {
     } else {
       entries.push({
         name: normalized,
-        displayName: name.trim(),
+        displayName,
         count: 1,
         lastAmount: amount,
         lastUsedAt,

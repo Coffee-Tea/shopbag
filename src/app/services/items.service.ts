@@ -3,7 +3,8 @@ import { HttpClient } from '@angular/common/http';
 import { IItem } from '../models/item.model';
 import { byOrder } from '../models/item.util';
 import { ToastService } from './toast.service';
-import { Observable } from 'rxjs';
+import { HistoryService } from './history.service';
+import { forkJoin, Observable } from 'rxjs';
 
 @Injectable({
   providedIn: 'root',
@@ -11,6 +12,7 @@ import { Observable } from 'rxjs';
 export class ItemsService {
   private readonly http = inject(HttpClient);
   private readonly toastService = inject(ToastService);
+  private readonly historyService = inject(HistoryService);
   private readonly apiUrl = '/api/items';
 
   private readonly itemsSignal = signal<IItem[]>([]);
@@ -66,7 +68,10 @@ export class ItemsService {
     };
 
     this.http.post<IItem>(this.apiUrl, newItem).subscribe({
-      next: (item) => this.itemsSignal.update((items) => [...items, item]),
+      next: (item) => {
+        this.itemsSignal.update((items) => [...items, item]);
+        this.historyService.record(item.name, item.amount);
+      },
       error: () => this.toastService.showError('Failed to add item'),
     });
   }
@@ -76,11 +81,22 @@ export class ItemsService {
 
     if (!previousItem) return;
 
-    this.itemsSignal.update((items) => items.map((item) => (item.id === id ? { ...item, ...changes } : item)));
+    const optimisticItem = { ...previousItem, ...changes };
+    this.itemsSignal.update((items) => items.map((item) => (item.id === id ? optimisticItem : item)));
 
     this.http.patch<IItem>(this.itemUrl(id), changes).subscribe({
       error: () => {
-        this.itemsSignal.update((items) => items.map((item) => (item.id === id ? previousItem : item)));
+        const keys = Object.keys(changes) as (keyof IItem)[];
+
+        this.itemsSignal.update((items) =>
+          items.map((item) => {
+            if (item.id !== id) return item;
+
+            const isStillOptimistic = keys.every((k) => item[k] === optimisticItem[k]);
+
+            return isStillOptimistic ? previousItem : item;
+          }),
+        );
         this.toastService.showError('Failed to save changes');
       },
     });
@@ -135,20 +151,17 @@ export class ItemsService {
 
   clearBought(): void {
     const boughtIds = this.boughtItems().map((i) => i.id);
+
+    if (!boughtIds.length) return;
+
     this.itemsSignal.update((items) => items.filter((item) => !item.bought));
 
-    let errorOccurred = false;
-    boughtIds.forEach((id) =>
-      this.delete$(id).subscribe({
-        error: () => {
-          if (!errorOccurred) {
-            errorOccurred = true;
-            this.toastService.showError('Failed to clear bought items');
-            this.load();
-          }
-        },
-      }),
-    );
+    forkJoin(boughtIds.map((id) => this.delete$(id))).subscribe({
+      error: () => {
+        this.toastService.showError('Failed to clear bought items');
+        this.load();
+      },
+    });
   }
 
   uncheckAll(): void {
@@ -163,20 +176,17 @@ export class ItemsService {
 
   clearAll(): void {
     const allIds = this.itemsSignal().map((i) => i.id);
+
+    if (!allIds.length) return;
+
     this.itemsSignal.set([]);
 
-    let errorOccurred = false;
-    allIds.forEach((id) =>
-      this.delete$(id).subscribe({
-        error: () => {
-          if (!errorOccurred) {
-            errorOccurred = true;
-            this.toastService.showError('Failed to clear all items');
-            this.load();
-          }
-        },
-      }),
-    );
+    forkJoin(allIds.map((id) => this.delete$(id))).subscribe({
+      error: () => {
+        this.toastService.showError('Failed to clear all items');
+        this.load();
+      },
+    });
   }
 
   private itemUrl(id: string): string {

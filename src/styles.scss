@@ -51,28 +51,3 @@ input {
     color: var(--color-subtle);
   }
 }
-
-// =============================================================================
-// Utility mixins
-// =============================================================================
-
-@mixin tap-feedback {
-  transition: background-color var(--duration-fast) var(--ease-standard);
-
-  &:active {
-    background: var(--color-surface);
-  }
-}
-
-@mixin focus-ring {
-  &:focus-visible {
-    outline: none;
-    box-shadow: inset 0 0 0 1.5px var(--color-ink);
-  }
-}
-
-@mixin strike-through {
-  text-decoration: line-through;
-  text-decoration-thickness: 1px;
-  color: var(--color-strike);
-}
