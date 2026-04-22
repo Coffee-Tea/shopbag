@@ -1,59 +1,63 @@
 # Shopbag
 
-This project was generated using [Angular CLI](https://github.com/angular/angular-cli) version 21.2.7.
+Shopbag is a mobile-first grocery list app built with Angular. It is a single-screen POC focused on fast list management: add items, edit inline, mark as bought, undo deletes, and run bulk actions for bought items.
 
-## Development server
+## Stack
 
-To start a local development server, run:
+- Angular 21
+- SCSS
+- JSON Server for the local API
+- Node.js 22.12+
 
-```bash
-ng serve
-```
+## Local development
 
-Once the server is running, open your browser and navigate to `http://localhost:4200/`. The application will automatically reload whenever you modify any of the source files.
-
-## Code scaffolding
-
-Angular CLI includes powerful code scaffolding tools. To generate a new component, run:
+Install dependencies:
 
 ```bash
-ng generate component component-name
+npm install
 ```
 
-For a complete list of available schematics (such as `components`, `directives`, or `pipes`), run:
+Start the full local setup:
 
 ```bash
-ng generate --help
+npm run dev
 ```
 
-## Building
+This runs:
 
-To build the project run:
+- the Angular app on `http://localhost:7007`
+- the mock API on `http://localhost:7008`
+
+API calls from the app are proxied from `/api` to the JSON Server defined in `db.json`.
+
+If you want to run them separately:
 
 ```bash
-ng build
+npm run api
+npm start
 ```
 
-This will compile your project and store the build artifacts in the `dist/` directory. By default, the production build optimizes your application for performance and speed.
-
-## Running unit tests
-
-To execute unit tests with the [Vitest](https://vitest.dev/) test runner, use the following command:
+## Scripts
 
 ```bash
-ng test
+npm start          # Angular dev server
+npm run api        # JSON Server API on port 7008
+npm run dev        # API + app together
+npm run build      # production build
+npm test           # unit tests
+npm run lint       # ESLint
+npm run format     # Prettier
 ```
 
-## Running end-to-end tests
+## Project shape
 
-For end-to-end (e2e) testing, run:
+- `src/app/components` — UI building blocks
+- `src/app/services` — item state, dialogs, toasts, dictionary, theme
+- `src/app/models` — item types and helpers
+- `src/assets/starter-dictionary.json` — starter suggestions
+- `db.json` — local mock data source
 
-```bash
-ng e2e
-```
+## Notes
 
-Angular CLI does not come with an end-to-end testing framework by default. You can choose one that suits your needs.
-
-## Additional Resources
-
-For more information on using the Angular CLI, including detailed command references, visit the [Angular CLI Overview and Command Reference](https://angular.dev/tools/cli) page.
+- The app uses a local mock backend during development.
+- Unit tests are planned for one of the next phases.
